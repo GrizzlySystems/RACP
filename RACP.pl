@@ -54,7 +54,7 @@ $msg =<<ETQT;
                #   ->Rodrigo Canaza . "RACP"                      #
                #   ->https://www.fb.com/RodrigoAlonzoWar          #
                #                                                  #
-               #  Version : 0.3                                   #
+               #  Version : 0.4                                   #
                #                                                  #
                ####################################################
 ETQT
@@ -103,9 +103,20 @@ print "[!] Happy Hacking ! :)\n";
 print "[!] Porfavor revisa -> $url :2028 en la pagina ! \n";
 print "[/] Ejemplo :  ";
 print "http://www.target.com:2082  \n\n";
-print "[!] Porfavor revisa ->  $url robots.txt en la pagina  !\n";
-print "[/] Ejemplo : ";
-print "http://www.target.com/robots.txt";
+
+print "[!]Checking file :  ";
+$testurl = $url .'robots.txt';
+print "$testurl\n";
+chomp($testurl);
+$codigo = LWP::Simple::get($testurl);
+if ( $codigo =~ /User-Agent/ ||
+	 $codigo =~ /Disallow/ ){
+	print "[+]Found -> $testurl\n";
+}
+else {
+	print "[-]Not Found -> $testurl\n";
+}
+
 print "\n\n"; 
 sleep(6);
 
@@ -204,9 +215,20 @@ print "[!] Happy Hacking ! :)\n";
 print "[!] Porfavor revisa -> $url :2028 en la pagina ! \n";
 print "[/] Ejemplo :  ";
 print "http://www.target.com:2082  \n\n";
-print "[!] Porfavor revisa ->  $url robots.txt en la pagina  !\n";
-print "[/] Ejemplo : ";
-print "http://www.target.com/robots.txt";
+
+print "[!]Checking file :  ";
+$testurl = $url .'robots.txt';
+print "$testurl\n";
+chomp($testurl);
+$codigo = LWP::Simple::get($testurl);
+if ( $codigo =~ /User-Agent/ ||
+	 $codigo =~ /Disallow/ ){
+	print "[+]Found -> $testurl\n";
+}
+else {
+	print "[-]Not Found -> $testurl\n";
+}
+
 print "\n\n"; 
 sleep(6);
 
